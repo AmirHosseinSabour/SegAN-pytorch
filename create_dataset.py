@@ -36,15 +36,16 @@ for image_type in image_types:
 for folder in main_dir:
     cur_dir = os.path.join(folder_name, folder)
     cur_dir_files = os.listdir(cur_dir)
-    for i, file in enumerate(cur_dir_files):
-        print(file)
-        
+    cur_dir_files.sort()
+    print(cur_dir_files)
+    for i, files in enumerate(cur_dir_files):
+       
         # My edits
-        file_path = os.path.join(cur_dir, file)
+        file_path = os.path.join(cur_dir, files)
         if 't1' in file_path and 'ce' not in file_path:
             continue
         
-        save_path = os.path.join(dataset_path, image_types[i], file)
+        save_path = os.path.join(dataset_path, image_types[i], files)
         imgVol = nib.load(file_path)
         npdata = imgVol.get_fdata()
         npdata = npdata.astype(np.uint8)
